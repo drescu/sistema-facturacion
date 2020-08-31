@@ -19,25 +19,25 @@ class Categoria {
     // Implementamos un metodo para editar registros
     public function editar($idcategoria, $nombre, $descripcion) {
         $sql = "UPDATE categoria SET nombre='$nombre', descripcion='$descripcion'
-                WHERE idcategoria='$idcategoria";
+                WHERE idcategoria='$idcategoria'";
         return ejecutarConsulta($sql);       
     } 
 
     // Implementamos un metodo para desactivar categorias
     public function desactivar($idcategoria) {
-        $sql = "UPDATE categoria SET condicion='0' WHERE idcategoria='$idcategoria";
+        $sql = "UPDATE categoria SET condicion='0' WHERE idcategoria='$idcategoria'";
         return ejecutarConsulta($sql);       
     } 
 
     // Implementamos un metodo para desactivar categorias
     public function activar($idcategoria) {
-        $sql = "UPDATE categoria SET condicion='1' WHERE idcategoria='$idcategoria";
+        $sql = "UPDATE categoria SET condicion='1' WHERE idcategoria='$idcategoria'";
         return ejecutarConsulta($sql);       
     } 
 
     // Implementamos un metodo para mostrar los datos de un registro a modificar
     public function mostrar($idcategoria) {
-        $sql = "SELECT * FROM categoria WHERE idcategoria='$idcategoria";
+        $sql = "SELECT * FROM categoria WHERE idcategoria='$idcategoria'";
         return ejecutarConsultaSimpleFila($sql);       
     } 
 

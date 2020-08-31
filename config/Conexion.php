@@ -22,7 +22,7 @@ if (!function_exists('ejecutarConsulta')) {
     function ejecutarConsultaSimpleFila($sql) {
         global $conexion;
         $query = $conexion->query($sql);
-        $row = $conexion->fetch_assoc();
+        $row = $query->fetch_assoc();
         return $row;
     }
 
