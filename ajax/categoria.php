@@ -41,10 +41,21 @@ switch ($_GET["op"]) {
 
         while ($reg = $rspta->fetch_object()) {
             $data[] = array(
-                "0" => '<button class="btn btn-warning" onclick="mostrar('.$reg->idcategoria.')"><i class="fa fa-pencil"></i></i></button>',
+                "0" => ($reg->condicion) ?  
+                            // condicion verdadera
+                            '<button class="btn btn-warning" onclick="mostrar('.$reg->idcategoria.')">
+                            <i class="fa fa-pencil"></i></i></button>'.
+                            ' <button class="btn btn-danger" onclick="desactivar('.$reg->idcategoria.')">
+                            <i class="fa fa-close"></i></i></button>' 
+                            //  condicion falsa
+                            : '<button class="btn btn-warning" onclick="mostrar('.$reg->idcategoria.')">
+                            <i class="fa fa-pencil"></i></i></button>'.
+                            ' <button class="btn btn-primary" onclick="activar('.$reg->idcategoria.')">
+                            <i class="fa fa-check"></i></i></button>',
                 "1" => $reg->nombre,
                 "2" => $reg->descripcion,
-                "3" => $reg->condicion
+                "3" => ($reg->condicion) ? '<span class="label bg-green">Activado</span>'
+                                         : '<span class="label bg-red">Desactivado</span>'
             );
         }
         $results = array(
