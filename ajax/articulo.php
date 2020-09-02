@@ -15,7 +15,7 @@ switch ($_GET["op"]) {
     case 'guardaryeditar':
 
         if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name'])) {
-            $imagen = "";
+            $imagen = $_POST["imagenactual"];
         } else {
             // obtengo la extension de la imagen
             $ext = explode(".", $_FILES["imagen"]["name"]);
@@ -31,7 +31,7 @@ switch ($_GET["op"]) {
         if (empty($idarticulo)) {  
             $rspta = $articulo->insertar($idcategoria, $codigo, $nombre, $stock, $descripcion, $imagen);
             echo $rspta ? "Artículo registrado" : "Artículo no se pudo registrar";
-        } else {
+        } else { 
             $rspta = $articulo->editar($idarticulo, $idcategoria, $codigo, $nombre, $stock, $descripcion, $imagen);
             echo $rspta ? "Artículo actualizado" : "Artículo no se pudo actualizar";
         }

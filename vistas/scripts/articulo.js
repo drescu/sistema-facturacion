@@ -15,7 +15,9 @@ function init() {
         // datos que devuelvo a la vista
         $("#idcategoria").html(r);
         $("#idcategoria").selectpicker('refresh');
-    })
+    });
+
+    $("#imagenmuestra").hide();
 
 }
 
@@ -105,11 +107,16 @@ function mostrar(idarticulo) {
 
         // datos que devuelvo a la vista
         $("#idcategoria").val(data.idcategoria);
+        $('#idcategoria').selectpicker('refresh');
         $("#codigo").val(data.codigo);
         $("#nombre").val(data.nombre);
         $("#stock").val(data.stock);
         $("#descripcion").val(data.descripcion);
+        $("#imagenmuestra").show();
+        $("#imagenmuestra").attr("src","../files/articulos/"+data.imagen);
+        $("#imagenactual").val(data.imagen);
         $("#idarticulo").val(data.idarticulo);
+        generarbarcode();
     })
 }
 
@@ -137,4 +144,10 @@ function activar(idarticulo) {
     })
 }
 
+// funcion para generar codigo de barras
+function generarbarcode() {
+    codigo = $("#codigo").val();
+    JsBarcode("#barcode",codigo);
+}
+ 
 init();

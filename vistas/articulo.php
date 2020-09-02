@@ -42,7 +42,7 @@ require "header.php";
               </tfoot>
             </table>
           </div>
-          <div class="panel-body" style="height: 400px;" id="formularioregistros">
+          <div class="panel-body" id="formularioregistros">
             <form name="formulario", id="formulario" method="POST">
               <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <label>Nombre(*):</label>
@@ -68,10 +68,16 @@ require "header.php";
               <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <label>Imágen:</label>
                 <input type="file" class="form-control" name="imagen" id="imagen">
+                <input type="hidden" name="imagenactual" id="imagenactual">
+                <img src="" width="150px" height="120px" id="imagenmuestra">
               </div>
               <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <label>Código:</label>
                 <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Código Barras">
+                <button class="btn btn-success" type="button" onclick="generarbarcode()">Generar</button>
+                <div>
+                  <svg id="barcode"></svg>
+                </div>
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <button class="btn btn-primary" type="submit" id="btnGuardar">
@@ -94,4 +100,5 @@ require "header.php";
 require "footer.php";
 ?>
 
+<script type="text/javascript" src="../public/js/JsBarcode.all.min.js"></script>
 <script type="text/javascript" src="scripts/articulo.js"></script>
