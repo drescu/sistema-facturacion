@@ -19,7 +19,9 @@
         <script src="../public/datatables/jszip.min.js"></script>
         <script src="../public/datatables/pdfmake.min.js"></script>
         <script src="../public/datatables/vfs_fonts.js"></script>
-         <!-- BOOTBOX -->
+         <!-- BootBox -->
          <script src="../public/js/bootbox.min.js"></script>
+         <!-- Boot-Select -->
+         <script src="../public/js/bootstrap-select.min.js"></script>
     </body>
 </html>

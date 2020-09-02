@@ -8,6 +8,15 @@ function init() {
     $("#formulario").on("submit",function(e) {
         guardaryeditar(e);
     })
+
+    // cargamos los items al select categoria
+    $.post("../ajax/articulo.php?op=selectCategoria", function(r)
+    {
+        // datos que devuelvo a la vista
+        $("#idcategoria").html(r);
+        $("#idcategoria").selectpicker('refresh');
+    })
+
 }
 
 // Funcion limpiar 

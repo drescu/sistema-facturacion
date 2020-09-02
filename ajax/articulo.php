@@ -18,9 +18,9 @@ switch ($_GET["op"]) {
             $imagen = "";
         } else {
             // obtengo la extension de la imagen
-            $ext = explode('.', $_FILES['imagen']['tmp_name']);
-            if($_FILES['imagen']['tmp_name'] == "image/jpg" || $_FILES['imagen']['tmp_name'] == "image/jpeg" ||
-            $_FILES['imagen']['tmp_name'] == "image/png")
+            $ext = explode(".", $_FILES["imagen"]["name"]);
+            if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" ||
+            $_FILES['imagen']['type'] == "image/png")
             {
                 $imagen = round(microtime(true)).'.'.end($ext);
                 move_uploaded_file($_FILES['imagen']['tmp_name'], "../files/articulos/".$imagen);
@@ -29,26 +29,26 @@ switch ($_GET["op"]) {
         
 
         if (empty($idarticulo)) {  
-            $rspta = $carticulo->insertar($idcategoria, $codigo, $nombre, $stock, $descripcion, $imagen);
+            $rspta = $articulo->insertar($idcategoria, $codigo, $nombre, $stock, $descripcion, $imagen);
             echo $rspta ? "Artículo registrado" : "Artículo no se pudo registrar";
         } else {
-            $rspta = $carticulo->editar($idarticulo, $idcategoria, $codigo, $nombre, $stock, $descripcion, $imagen);
+            $rspta = $articulo->editar($idarticulo, $idcategoria, $codigo, $nombre, $stock, $descripcion, $imagen);
             echo $rspta ? "Artículo actualizado" : "Artículo no se pudo actualizar";
         }
     break;
     
     case 'desactivar':
-        $rspta = $carticulo->desactivar($idarticulo);
+        $rspta = $articulo->desactivar($idarticulo);
         echo $rspta ? "Artículo desactivado" : "Artículo no se pudo desactivar";
     break;
     
     case 'activar':
-        $rspta = $carticulo->activar($idarticulo);
+        $rspta = $articulo->activar($idarticulo);
         echo $rspta ? "Artículo activado" : "Artículo no se pudo activar";
     break;
 
     case 'mostrar':
-        $rspta = $carticulo->mostrar($idarticulo);
+        $rspta = $articulo->mostrar($idarticulo);
         // Codificar el resultado utilizando JSON
         echo json_encode($rspta);
     break;
@@ -75,7 +75,7 @@ switch ($_GET["op"]) {
                 "2" => $reg->categoria,
                 "3" => $reg->codigo,
                 "4" => $reg->stock,
-                "5" => "<img src='../files/articulos/'".$reg->imagen."height='50px' width='50px'>",
+                "5" => "<img src='../files/articulos/".$reg->imagen."' height='50px' width='50px'>",
                 "6" => ($reg->condicion) ? '<span class="label bg-green">Activado</span>'
                                          : '<span class="label bg-red">Desactivado</span>'
             );
@@ -87,6 +87,18 @@ switch ($_GET["op"]) {
             "aaData" => $data     // envio el array completo
         );
         echo json_encode($results);
+    break;
+
+    case 'selectCategoria':
+        require_once "../modelos/Categoria.php";
+        $categoria = new Categoria();
+        
+        $rspta = $categoria->select();
+
+        while ($reg = $rspta->fetch_object()) {
+            echo '<option value='.$reg->idcategoria.'>'.$reg->nombre.'</option>';
+        }
+        
     break;
 }
 

@@ -45,15 +45,33 @@ require "header.php";
           <div class="panel-body" style="height: 400px;" id="formularioregistros">
             <form name="formulario", id="formulario" method="POST">
               <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <label>Nombre:</label>
-                <input type="hidden" name="idcategoria" id="idcategoria">
-                <input type="text" class="form-control" name="nombre" id="nombre" maxlength="50" 
+                <label>Nombre(*):</label>
+                <input type="hidden" name="idarticulo" id="idarticulo">
+                <input type="text" class="form-control" name="nombre" id="nombre" maxlength="100" 
                   placeholder="Nombre" required>
+              </div>
+              <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <label>Categoría(*):</label>
+                <select name="idcategoria" id="idcategoria" class="form-control selectpicker"
+                  data-live-search="true" required>
+                </select>
+              </div>
+              <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <label>Stock(*):</label>
+                <input type="number" class="form-control" name="stock" id="stock" required>
               </div>
               <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <label>Descripción:</label>
                 <input type="text" class="form-control" name="descripcion" id="descripcion" 
-                  maxlength="256" placeholder="Descripcion">
+                  maxlength="256" placeholder="Descripción">
+              </div>
+              <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <label>Imágen:</label>
+                <input type="file" class="form-control" name="imagen" id="imagen">
+              </div>
+              <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <label>Código:</label>
+                <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Código Barras">
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <button class="btn btn-primary" type="submit" id="btnGuardar">
