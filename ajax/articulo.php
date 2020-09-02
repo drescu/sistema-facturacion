@@ -1,10 +1,10 @@
 <?php
 require_once "../modelos/Articulo.php";
 
-$carticulo = new Articulo();
+$articulo = new Articulo();
 
 $idarticulo = isset($_POST["idarticulo"])? limpiarCadena($_POST["idarticulo"]) : "";
-$idcategoria = isset($_POST["idcate$idcategoria"])? limpiarCadena($_POST["idcate$idcategoria"]) : "";
+$idcategoria = isset($_POST["idcategoria"])? limpiarCadena($_POST["idcategoria"]) : "";
 $codigo = isset($_POST["codigo"])? limpiarCadena($_POST["codigo"]) : "";
 $nombre = isset($_POST["nombre"])? limpiarCadena($_POST["nombre"]) : "";
 $stock = isset($_POST["stock"])? limpiarCadena($_POST["stock"]) : "";
