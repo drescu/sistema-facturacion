@@ -29,6 +29,9 @@ function limpiar() {
     $("#nombre").val("");  
     $("#descripcion").val("");
     $("#stock").val("");
+    $("#imagenmuestra").attr("src","");
+    $("#imagenactual").val("");
+    $("#print").hide();     
 }
 
 // Funcion mostrar formulario
@@ -148,6 +151,12 @@ function activar(idarticulo) {
 function generarbarcode() {
     codigo = $("#codigo").val();
     JsBarcode("#barcode",codigo);
+    $("#print").show();
+}
+
+// funcion para imprimir codigo de barras
+function imprimir() {
+    $("#print").printArea();
 }
  
 init();
